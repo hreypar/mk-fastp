@@ -9,17 +9,14 @@
 #
 # AUTHOR: HRG
 #
-# Load configuration file
-< config.mk
-
 # run fastp on the *.fastq.gz files in data
 #
 results/%_fastp_filtered.fastq.gz:   data/%.fastq.gz
 	DIR="`dirname $target | sort -u`"
 	mkdir -p "$DIR"
 	fastp -i  $prereq \
-		-o $target.build
-		--json results/$stem.json
-		--html results/$stem.html
+		-o $target.build \
+		--json results/$stem.json \
+		--html results/$stem.html \
 	&& mv $target.build $target
 
