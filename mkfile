@@ -14,7 +14,7 @@
 
 # run fastp on the *.fastq.gz files in data
 #
-results/%_fastp_filtered_fastq.gz:   data/%.fastq.gz
+results/%_fastp_filtered.fastq.gz:   data/%.fastq.gz
 	DIR="`dirname $target | sort -u`"
 	mkdir -p "$DIR"
 	fastp -i  $prereq \
