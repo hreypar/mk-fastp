@@ -15,8 +15,12 @@ results/%_fastp_filtered.fastq.gz:   data/%.fastq.gz
 	DIR="`dirname $target | sort -u`"
 	mkdir -p "$DIR"
 	fastp -i  $prereq \
-		-o $target.build \
+		--stdout \
 		--json results/$stem.json \
 		--html results/$stem.html \
+	| gzip \
+		-f \
+		--best \
+	> $target.build \
 	&& mv $target.build $target
 
